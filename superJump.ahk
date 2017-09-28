@@ -1,4 +1,4 @@
-SendMode, Input
+SendMode, InputThenPlay
 +space::
 	Send, {Space Down}{c down}
 	Sleep, 500
