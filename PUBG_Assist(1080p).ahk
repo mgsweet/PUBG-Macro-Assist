@@ -13,8 +13,8 @@
 ; Variables
 ;---------------------------------------
 
-	ADS = 1 ;Var for fast aiming.
-	Compensation = 1 ;Var for compensation when autofiring.
+	ADS = 1 ; Value for fast aiming.
+	Compensation = 1 ; Value for compensation when autofiring.
 
 	V_AutoFire = 0 ; Value for Autofire being on and off.
 	isMouseShown() ; Value for suspending when mouse is visible.
