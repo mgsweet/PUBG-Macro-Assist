@@ -27,7 +27,7 @@
 ### Usage for  `PUBG_Assist(1080p)_adv.ahk`
 add more accuracy compensation value to some guns(M16, M4, UMP, SCAL)
 
-also provide telescope(X4) compensation of those guns.
+also provide telescope(X4) compensation for those guns.
 
 warn: while specific gun mode is running, the default compensation mode can't work, just try or read the code
 
