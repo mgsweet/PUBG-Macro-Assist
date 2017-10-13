@@ -23,6 +23,24 @@
 	5. `NumpadAdd`: add 1 to  compensation value
 	6. `NumpadSub`: sub 1 to  compensation value
 	7. `NumpadEnter`: display the compensation value
+	
+### Usage for  `PUBG_Assist(1080p)_adv.ahk`
+add more accuracy compensation value to some guns(M16, M4, UMP, SCAL)
+also provide telescope(X4) compensation of those guns.
+warn: while specific gun mode is running, the default compensation mode can't work, just try or read the code
+Some hotkey you should know:
+1. `NumPad0`: set compensation value and Gun setting to 0
+2. `NumPad1`: change ADS setting
+3. `NumPad2`: change AutoFire setting
+4. `NumPad3`: change telescope setting
+5. `NumPad4`: M4 and SCAL compensation
+6. `NumPad5`: UMP compensation
+7. `NumPad6`: M16 compensation
+8. `NumPad7`: AK compensation
+4. `NumPad8`: reset gun setting and set compensation value to 8
+5. `NumpadAdd`: add 1 to  compensation value
+6. `NumpadSub`: sub 1 to  compensation value
+7. `NumpadEnter`: display the compensation value
 
 ## Development
 I will try to create some macros to help you fire better.
