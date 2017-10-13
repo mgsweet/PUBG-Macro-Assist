@@ -19,7 +19,7 @@
 	V_AutoFire := 0 ; Value for Autofire being on and off.
 	isMouseShown() ; Value for suspending when mouse is visible.
 	comp := 0 ; Value for compensation.
-	isAimming := 0;
+	isAimming := 0 ;
 ;---------------------------------------   
 ; Suspend if mouse is visible
 ;---------------------------------------   
