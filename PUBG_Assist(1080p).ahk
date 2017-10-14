@@ -137,7 +137,7 @@
    					mouseXY(0, comp) ;If active, call to Compensation.
 			}
         	} else {
-            		MouseClick, Left,,, 1
+            		;MouseClick, Left,,, 1
 
             		if Compensation = 1
                 	mouseXY(0, comp) ;If active, call to Compensation.
