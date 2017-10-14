@@ -123,7 +123,7 @@
 ; Auto Firing
 ;---------------------------------------
 	~$*LButton::			; Fires Automaticly when Autofire is on.
-		if V_AutoFire = 1
+		if (V_AutoFire = 1)
 		{
 			Loop
 			{
@@ -136,8 +136,13 @@
 				if Compensation = 1
    					mouseXY(0, comp) ;If active, call to Compensation.
 			}
-		}
-	Return 
+        } else {
+            MouseClick, Left,,, 1
+
+            if Compensation = 1
+                mouseXY(0, comp) ;If active, call to Compensation.
+        }
+	Return
 
 
 ;---------------------------------------
