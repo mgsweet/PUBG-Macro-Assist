@@ -106,7 +106,7 @@
 
 	~$*NumPad2::(V_AutoFir = 0 ? (V_AutoFir := 1,ToolTip("AutoFire ON")) : (V_AutoFir := 0,ToolTip("AutoFire OFF")))
 
-	~$*Numpad3::(isX4used = 0 ? (isX4used := 1,ToolTip("x4 ON")) : (isX4used := 0,ToolTip("AutoFire OFF")))
+	~$*Numpad3::(isX4used = 0 ? (isX4used := 1,ToolTip("x4 ON")) : (isX4used := 0,ToolTip("x4 OFF")))
 
 	~$*Numpad4::			; Sets compensation value for M4
 		gunID := 4
