@@ -1,6 +1,10 @@
 # PUBG-Macro-Assist
 *Some macros coded by Autohotkey.祝大家吃鸡愉快*
 
+## Warn 2017/11/15
+Some users of my tools said that their account had been banned by the blue hole.(Why they don't ban mine?) 
+So, please stop using this tool and thank for your support.
+
 ## Usage
 1. Download **Autohotkey** from: [https://www.autohotkey.com/download/](https://www.autohotkey.com/download/)
 2. `git@github.com:mgsweet/PUBG-Macro-Assist.git` or download the `.zip`
@@ -48,6 +52,3 @@ Some hotkey you should know:
 ## Development
 I will try to create some macros to help you fire better.
 Welcome to join and pull request to me.
-
-## Warn
-Until now, I can play well with my macros. But you should know that it may be risk that your ID will be killed.
