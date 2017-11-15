@@ -30,7 +30,7 @@
 	gunComArr[3] := Array(26,26,26,26,26,26,26,45,45,45,45,29,29,29,29,29,29,29,29,29,29,29) ; M4, SCAL with x4
 	gunComArr[4] := Array(5.5,5.5,5.5,5.5,5.5,5.5,5.5,6.9,6.9,6.9,6.9,7.1,7.1,7.1,7.1,7.1,7.1,7.1,7.1,7,7,7) ; ump9
 	gunComArr[5] := Array(25,25,25,25,25,25,25,35,35,35,35,28,28,28,28,28,28,28,28,28,28,28) ; ump9 with x4
-	gunComArr[6] := Array(7,7,7,7,7,7,7,13.6,13.6,13.6,13.6,10.2,10.2,10.2,10.2,10.2,10.2,10.2,10.2,8,8,8) ; M16
+	gunComArr[6] := Array(8,8,8,8,8,8,8,10.2,10.2,10.2,10.2,10.2,10.2,10.2,10.2,8,8,8) ; M16
 	gunComArr[7] := Array(26,26,26,26,26,26,26,45,45,45,45,29,29,29,29,29,29,29,29,29,29,29) ; M16 with x4
 
 
@@ -175,7 +175,7 @@
 				Gosub, RandomSleep
 
 				if (Compensation = 1)
-					if (gunID = 0)
+					if (gunID = 0)	; default compensation mode
    						mouseXY(0, comp) ;If active, call to Compensation.
    					else {
    						;0:default, 4:M4,SCAL, 5: UMP, 6: M16, 7:AK
@@ -201,6 +201,9 @@
    						}
    					}
 			}
+		} else {
+			if Compensation = 1
+				mouseXY(0, comp)  ;If active, call to Compensation.
 		}
 	Return 
 
