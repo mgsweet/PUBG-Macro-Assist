@@ -4,7 +4,7 @@
 *Some macros coded by Autohotkey.祝大家吃鸡愉快*
 
 ## Latest Edition:
-1. 保留了除了补偿外的所有功能的版本
+1. 保留了除了补偿和高速单点外的所有功能的版本
 2. 现在游泳按空格能浮起来了
 3. 现在跳跃开镜不会再卡在瞄准状态了
 
@@ -23,9 +23,8 @@ So, please stop using this tool and thank for your support.
 
 ### Usage for  `green_Assist.ahk`(No Compensation Edition)
 1. Crouch Jumping: All of your `space` click will become super jump, just jump as usual.
-2. Autofire: you can use single-fire mode of the gun to fire as the autofire mode, which will make you fire more stable. 
-3. Fast Aiming: aim faster in the game. A nice tool I suggest you to use. But it may cause bug while you aim and jump. If you cause that, all you need is just jump again.
-5. Some hotkey you should know:
+2. Fast Aiming: aim faster in the game. A nice tool I suggest you to use. 
+3. Some hotkey you should know:
 	1. `NumPad1`: change ADS setting
 
 ## Development
