@@ -15,7 +15,7 @@ So, please stop using this tool and thank for your support.
 ## Usage
 1. Download **Autohotkey** from: [https://www.autohotkey.com/download/](https://www.autohotkey.com/download/)
 2. `git@github.com:mgsweet/PUBG-Macro-Assist.git` or download the `.zip`
-3. run the `superJump.ahk`(only super Jump macro) or `PUBG_Assist(1080p).ahk`(more macro but  riskier).
+3. run the `superJump.ahk`(only super Jump macro) or `green_Assist.ahk`(more macro but  riskier).
 4. use Fullscreen (Windowed) to run your game.
 
 ### Usage for  `superJump.ahk`
