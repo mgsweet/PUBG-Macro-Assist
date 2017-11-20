@@ -1,3 +1,6 @@
+THIS PROJECT IS NO LONGER SUPPORTED AS YOU CAN GET BANNED FROM PUBG.
+
+由于蓝洞开始封禁宏玩家，该库不再正常维护。
 # PUBG-Macro-Assist
 *Some macros coded by Autohotkey.祝大家吃鸡愉快*
 
