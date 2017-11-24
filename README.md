@@ -9,7 +9,7 @@
 3. 现在跳跃开镜不会再卡在瞄准状态了
 
 ## Warn 2017/11/15
-Some users of my tools said that their account had been banned by the blue hole.(Why they don't ban mine?) 
+Some users of my tools said that their account had been banned by the blue hole. 
 So, please stop using this tool and thank for your support.
 
 ## Usage
