@@ -14,12 +14,12 @@
 ;---------------------------------------
 
 	ADS := 1 ; Value for fast aiming.
-	Compensation := 0 ; Value for compensation when autofiring.
+	Compensation := 1 ; Value for decide whether compensation is need.
 
-	V_AutoFire := 0 ; Value for Autofire being on and off.
+	V_AutoFire := 1 ; Value for Autofire being on and off.
 	isMouseShown() ; Value for suspending when mouse is visible.
-	comp := 0 ; Value for compensation.
-	isAimming := 0 ;
+	comp := 8 ; Value for compensation.
+
 ;---------------------------------------   
 ; Suspend if mouse is visible
 ;---------------------------------------   
@@ -46,15 +46,6 @@
 		Sleep 1
 	}
 
-;---------------------------------------
-; Disable Mouse Wheel
-;---------------------------------------
-
-	;WheelUp::Return 			; Disables Mouse Wheel Up.
-	;~$*WheelUp::Return 			; Disables Mouse Wheel Up.
-	;WheelDown::Return 			; Disables Mouse Wheel Up.
-	;~$*WheelDown::Return 		; Disables Mouse Wheel Down.
-
 ;---------------------------------------   
 ; Crouch Jumping
 ;---------------------------------------
@@ -73,22 +64,9 @@
 ;---------------------------------------
 ; Autofire Setup
 ;---------------------------------------
-	~$*b::					; Swaps the state of Autofire with the press of "B".
-		if V_AutoFire = 0
-		{
-			V_AutoFire = 1 
-			ToolTip("AutoFire ON")
-		}
-		else
-		{
-			V_AutoFire = 0 
-			ToolTip("AutoFire OFF")
-		}
-	Return
-
 	~$*NumPad1::(ADS = 0 ? (ADS := 1,ToolTip("ADS ON")) : (ADS := 0,ToolTip("ADS OFF")))
 
-	~$*NumPad2::(V_AutoFir = 0 ? (V_AutoFir := 1,ToolTip("AutoFire ON")) : (V_AutoFir := 0,ToolTip("AutoFire OFF")))
+	~$*NumPad2::(V_AutoFire = 0 ? (V_AutoFire := 1,ToolTip("AutoFire ON")) : (V_AutoFire := 0,ToolTip("AutoFire OFF")))
 
 	~$*Numpad0::			; Resets compensation value to 0
 		comp := 0
@@ -137,12 +115,18 @@
 				MouseClick, Left,,, 1
 				Gosub, RandomSleep
 
-				if Compensation = 1
-   					mouseXY(0, comp) ;If active, call to Compensation.
+				if (Compensation = 1) {
+            					Random, ramCom, -0.5, 0.0
+					;ToolTip(comp + ramCom)
+                				mouseXY(0, comp + ramCom) ;If active, call to Compensation.
+            				}
 			}
         		} else {
-            			if Compensation = 1
-                			mouseXY(0, comp) ;If active, call to Compensation.
+            			if (Compensation = 1) {
+            				Random, ramCom, -0.5, 0.0
+				;ToolTip(comp + ramCom)
+                			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
+            			}
         		}
 	Return
 
@@ -171,7 +155,7 @@
 ; Tooltips and Timers
 ;---------------------------------------	
 	RandomSleep:			; Random timing between Autofire shots
-		Random, random, 14, 25
+		Random, random, 19, 25
 		Sleep %random%-5
 	Return
 	
