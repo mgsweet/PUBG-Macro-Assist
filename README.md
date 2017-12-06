@@ -16,10 +16,6 @@
 2. 现在游泳按空格能浮起来了
 3. 现在跳跃开镜不会再卡在瞄准状态了
 
-## Warn 2017/11/15
-Some users of my tools said that their account had been banned by the blue hole. 
-So, please stop using this tool and thank for your support.
-
 ## Usage
 1. Download **Autohotkey** from: [https://www.autohotkey.com/download/](https://www.autohotkey.com/download/)
 2. `git@github.com:mgsweet/PUBG-Macro-Assist.git` or download the `.zip`
