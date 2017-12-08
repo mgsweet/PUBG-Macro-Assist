@@ -123,7 +123,7 @@
 			}
         		} else {
             			if (Compensation = 1) {
-            				Random, ramCom, -0.5, 0.0
+            				Random, ramCom, -1.0, 0.0
 				;ToolTip(comp + ramCom)
                 			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
             			}
