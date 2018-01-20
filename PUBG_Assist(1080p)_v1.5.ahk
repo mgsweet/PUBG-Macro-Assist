@@ -6,20 +6,27 @@
 	
 	#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
 	#SingleInstance force ; Forces the script to only run one at a time.
-	SetTitleMatchMode, 2 ; Sets mode for ifwinactive window.
+	;SetTitleMatchMode, 2 ; Sets mode for ifwinactive window.
 	;'#IfWinActive, ahk_exe TslGame.exe; Ensures Autofire only works in PUBG.
 	
 ;---------------------------------------
 ; Variables
 ;---------------------------------------
 
+	ADS := 0 ; Value for fast aiming.
+	V_AutoFire := 0 ; Value for Autofire being on and off.
+	useOldMode := 0 ; Value for change mode.
 
-	ADS := 1 ; Value for fast aiming.
-	Compensation := 1 ; Value for decide whether compensation is need.
+	comp := 25 ; Value for auto fire compensation.
+	strongComp := 25 ; Value for single shot compensation
+	weakComp := 8 ;
 
-	V_AutoFire := 1 ; Value for Autofire being on and off.
-	isMouseShown() ; Value for suspending when mouse is visible.
-	comp := 8 ; Value for compensation.
+	TBS := 100 ;  value of Time between shot
+	SCAL_TBS := 96 ; Time between shot of SCAL
+	AK_TBS := 100 ; Time between shot of AK
+	M4_TBS := 86 ; Time between shot of M4
+	GROZA_TBS := 80 ; Time between shot of GROZA
+	UMP_TBS := 92 ; Time between shot of UMP
 
 ;---------------------------------------   
 ; Suspend if mouse is visible
@@ -38,12 +45,15 @@
 	else
       		Return 0
 	}
+
 	Loop
 	{
-		if isMouseShown() == 1
+		if (isMouseShown() == 1) {
 			Suspend On
-		else
+		}
+		else {
 			Suspend Off
+		}
 		Sleep 1
 	}
 
@@ -67,14 +77,48 @@
 ;---------------------------------------
 	~$*NumPad1::(ADS = 0 ? (ADS := 1,ToolTip("ADS ON")) : (ADS := 0,ToolTip("ADS OFF")))
 
-	~$*NumPad2::(V_AutoFire = 0 ? (V_AutoFire := 1,ToolTip("AutoFire ON")) : (V_AutoFire := 0,ToolTip("AutoFire OFF")))
+	~$*NumPad2::(V_AutoFire = 0 ? (V_AutoFire := 1, useOldMode := 1, strongComp := comp, comp := weakComp,ToolTip("Old Mode AUTOFIRE ON")) : (V_AutoFire := 0, useOldMode := 0,weakComp := comp,comp := strongComp,ToolTip("Old Mode AUTOFIRE OFF")))
 
-	~$*Numpad0::			; Resets compensation value to 0
+	~$*NumPad3::(useOldMode = 0 ? (useOldMode := 1,strongComp := comp, comp := weakComp,ToolTip(comp)) : (useOldMode := 0,weakComp := comp, comp := strongComp,ToolTip(comp)))
+
+	; SCAL_TBS := 96 ; Time between shot of SCAL
+	; AK_TBS := 100 ; Time between shot of AK
+	; M4_TBS := 86 ; Time between shot of M4
+	; GROZA_TBS := 80 ; Time between shot of GROZA
+
+	~$*Numpad4::	
+		TBS := M4_TBS	; M4 
+		ToolTip("TBS: M4")
+	return
+
+	~$*Numpad5::	
+		TBS := UMP_TBS	; UMP 
+		ToolTip("TBS: UMP")
+	return
+
+	~$*Numpad6::	
+		TBS := SCAL_TBS	; SCAL
+		ToolTip("TBS: SCAL")
+	return
+
+	~$*Numpad7::	
+		TBS := AK_TBS	; AK
+		ToolTip("TBS: AK")
+	return
+
+	~$*Numpad9::	
+		TBS := GROZA_TBS	; AK
+		ToolTip("TBS: GROZA")
+	return
+
+	; Resets compensation value to 0
+	~$*Numpad0::
 		comp := 0
 		ToolTip(comp)
 	Return	
 
-	~$*Numpad8::			; Resets compensation value to 0
+	; Resets compensation value to 8
+	~$*Numpad8::	
 		comp := 8
 		ToolTip(comp)
 	Return	
@@ -116,15 +160,27 @@
 				MouseClick, Left,,, 1
 				Gosub, RandomSleep
 
-				if (Compensation = 1) {
-            					Random, ramCom, -0.5, 0.0
-					;ToolTip(comp + ramCom)
-                				mouseXY(0, comp + ramCom) ;If active, call to Compensation.
-            				}
+				Random, ramCom, -0.5, 0.0
+				;ToolTip(comp + ramCom)
+                			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
 			}
         		} else {
-            			if (Compensation = 1) {
-            				Random, ramCom, -1.0, 0.0
+            			if (useOldMode = 0) {
+            				Loop
+				{
+					GetKeyState, LButton, LButton, P
+					if LButton = U
+					Break
+
+					Random, random, TBS - 1, TBS + 1
+					Sleep %random%
+
+					Random, ramCom, -0.5, 0.0
+					;ToolTip(comp + ramCom)
+                				mouseXY(0, comp + ramCom) ;If active, call to Compensation.
+                			}
+            			} else {
+            				Random, ramCom, -0.5, 0.0
 				;ToolTip(comp + ramCom)
                 			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
             			}
