@@ -15,6 +15,7 @@
 	ADS := 0 ; Value for fast aiming.
 	V_AutoFire := 0 ; Value for Autofire being on and off.
 	useOldMode := 0 ; Value for change mode.
+	wantsRbeforeL := 1 ; If wants to be aiming before autofire or compensation.
 
 	comp := 25 ; Value for auto fire compensation.
 	strongComp := 25 ; Value for single shot compensation
@@ -147,8 +148,9 @@
 ;---------------------------------------
 ; Auto Firing
 ;---------------------------------------
-	~$*LButton::			; Fires Automaticly when Autofire is on.
-		if (V_AutoFire = 1)
+	~$*LButton::
+		if (GetKeyState("RButton") || wantsRbeforeL != 1) {	;  so while you throw grenades the com will not work;
+			if (V_AutoFire = 1)
 		{
 			Loop
 			{
@@ -167,9 +169,8 @@
             				Loop
 				{
 					GetKeyState, LButton, LButton, P
-					if LButton = U
-					Break
-
+					if LButton = U 
+						Break
 					Random, random, TBS - 1, TBS + 1
 					Sleep %random%
 
@@ -183,6 +184,7 @@
                 			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
             			}
         		}
+		}
 	Return
 
 
