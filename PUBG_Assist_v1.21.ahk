@@ -133,7 +133,7 @@
 	Return
 
 	~$*NumpadEnter::		; Displays compensation value
-	 	ToolTip(comp)
+	 	(wantsRbeforeL = 0 ? (wantsRbeforeL := 1,ToolTip("Better grenades ON")) : (wantsRbeforeL := 0,ToolTip("Better grenades OFF")))
 	Return	
 
 ;---------------------------------------
