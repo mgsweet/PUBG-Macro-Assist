@@ -14,7 +14,7 @@
 ;---------------------------------------
 	ADS := 0 ; Value for fast aiming.
 	V_AutoFire := 0 ; Value for Autofire being on and off.
-	useOldMode := 1 ; Value for change mode.
+	useOldMode := 0 ; Value for change mode.
 	wantsRbeforeL := 1 ; If wants to be aiming before autofire or compensation.
 
 	comp := 25 ; Value for auto fire compensation.
@@ -132,9 +132,7 @@
 		ToolTip(comp)
 	Return
 
-	~$*NumpadEnter::		; Displays compensation value
-	 	(wantsRbeforeL = 0 ? (wantsRbeforeL := 1,ToolTip("Better grenades ON")) : (wantsRbeforeL := 0,ToolTip("Better grenades OFF")))
-	Return	
+	~$*NumpadEnter::(wantsRbeforeL = 0 ? (wantsRbeforeL := 1,ToolTip("Better grenades ON")) : (wantsRbeforeL := 0,ToolTip("Better grenades OFF")))
 
 ;---------------------------------------
 ;Compensation
@@ -149,41 +147,42 @@
 ; Auto Firing
 ;---------------------------------------
 	~$*LButton::
-		if (GetKeyState("RButton") || wantsRbeforeL != 1) {	;  so while you throw grenades the com will not work;
+		if (GetKeyState("RButton") ||  wantsRbeforeL = 0) {	;  so while you throw grenades the com will not work;
 			if (V_AutoFire = 1)
-		{
-			Loop
 			{
-				GetKeyState, LButton, LButton, P
-				if LButton = U
-					Break
-				MouseClick, Left,,, 1
-				Gosub, RandomSleep
-
-				Random, ramCom, -0.5, 0.0
-				;ToolTip(comp + ramCom)
-                			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
-			}
-        		} else {
-            			if (useOldMode = 0) {
-            				Loop
+				Loop
 				{
 					GetKeyState, LButton, LButton, P
-					if LButton = U 
+					if LButton = U
 						Break
-					Random, random, TBS - 1, TBS + 1
-					Sleep %random%
+					MouseClick, Left,,, 1
+					Gosub, RandomSleep
 
 					Random, ramCom, -0.5, 0.0
 					;ToolTip(comp + ramCom)
                 				mouseXY(0, comp + ramCom) ;If active, call to Compensation.
-                			}
-            			} else {
-            				Random, ramCom, -0.5, 0.0
-				;ToolTip(comp + ramCom)
-                			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
-            			}
-        		}
+				}
+        			} else {
+            				if (useOldMode = 0) {
+            					ToolTip(1)
+            					Loop
+					{
+
+						GetKeyState, LButton, LButton, P
+						if LButton = U 
+							Break
+						Random, random, TBS - 1, TBS + 1
+						Sleep %random%
+
+						Random, ramCom, -0.5, 0.0
+						;ToolTip(comp + ramCom)
+                					mouseXY(0, comp + ramCom) ;If active, call to Compensation.
+                				}
+            				} else {
+            					Random, ramCom, -0.5, 0.0
+                				mouseXY(0, comp + ramCom) ;If active, call to Compensation.
+            				}
+        			}
 		}
 	Return
 
@@ -223,11 +222,11 @@
 
 	ToolTip(label) ;Function to show a tooltip when activating, deactivating or changing values.
 	{
-		activeMonitorInfo(Width, Height) ;
-		xPos := Width / 2 - 30
- 		yPos := Height / 2 + (Height / 10)
+		; activeMonitorInfo(Width, Height) ;
+		; xPos := Width / 2 - 30
+ 	; 	yPos := Height / 2 + (Height / 10)
 
-  		ToolTip, %label%, xPos, yPos ;Tooltips are shown under crosshair for FullHD monitors.
+  		ToolTip, %label%, 930, 650 ;Tooltips are shown under crosshair for FullHD monitors.
   		SetTimer, RemoveToolTip, 1300 ;Removes tooltip after 1.3 seconds.
   		Return
 	}
@@ -236,18 +235,18 @@
 ; Get Width and Height
 ;---------------------------------------
 
-	activeMonitorInfo(ByRef Width,  ByRef  Height)
-	{ ; Retrieves the size of the monitor, the mouse is on
-		CoordMode, Mouse, Screen
-		MouseGetPos, mouseX , mouseY
-		SysGet, monCount, MonitorCount
-		Loop %monCount%
-   		{
-   			SysGet, curMon, Monitor, %a_index%
-       	 		if ( mouseX >= curMonLeft and mouseX <= curMonRight and mouseY >= curMonTop and mouseY <= curMonBottom ) {
-				Height := curMonBottom - curMonTop
-				Width  := curMonRight  - curMonLeft
-				return
-			}
-   		}
-	}
+	; activeMonitorInfo(ByRef Width,  ByRef  Height)
+	; { ; Retrieves the size of the monitor, the mouse is on
+	; 	CoordMode, Mouse, Screen
+	; 	MouseGetPos, mouseX , mouseY
+	; 	SysGet, monCount, MonitorCount
+	; 	Loop %monCount%
+ ;   		{
+ ;   			SysGet, curMon, Monitor, %a_index%
+ ;       	 		if ( mouseX >= curMonLeft and mouseX <= curMonRight and mouseY >= curMonTop and mouseY <= curMonBottom ) {
+	; 			Height := curMonBottom - curMonTop
+	; 			Width  := curMonRight  - curMonLeft
+	; 			return
+	; 		}
+ ;   		}
+	; }
