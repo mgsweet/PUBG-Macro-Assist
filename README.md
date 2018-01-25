@@ -1,7 +1,5 @@
 由于蓝洞开始封禁宏玩家，本库不再维护（我的号已被ban，2018/01/26）。
 
-建议大家改改最开始Variables块内的代码，改默认项。
-
 # PUBG-Macro-Assist
 *Some macros coded by Autohotkey.祝大家吃鸡愉快*
 
