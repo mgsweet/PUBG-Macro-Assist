@@ -12,7 +12,6 @@
 ;---------------------------------------
 ; Variables
 ;---------------------------------------
-
 	ADS := 0 ; Value for fast aiming.
 	V_AutoFire := 0 ; Value for Autofire being on and off.
 	useOldMode := 0 ; Value for change mode.
@@ -27,6 +26,15 @@
 	M4_TBS := 86 ; Time between shot of M4
 	GROZA_TBS := 80 ; Time between shot of GROZA
 	UMP_TBS := 92 ; Time between shot of UMP
+
+;---------------------------------------
+; Main
+;---------------------------------------
+	activeMonitorInfo(Width, Height) ;
+	xPos := Width / 2 - 50
+ 	yPos := Height / 2 + (Height / 10)
+ 	screenInfo = %Width%*%Height% ;
+ 	ToolTip(screenInfo) ;
 
 ;---------------------------------------   
 ; Suspend if mouse is visible
@@ -223,7 +231,27 @@
 
 	ToolTip(label) ;Function to show a tooltip when activating, deactivating or changing values.
 	{
-  		ToolTip, %label%, 930, 650 ;Tooltips are shown under crosshair for FullHD monitors.
+  		ToolTip, %label%, xPos, yPos ;Tooltips are shown under crosshair for FullHD monitors.
   		SetTimer, RemoveToolTip, 1300 ;Removes tooltip after 1.3 seconds.
   		Return
+	}
+
+;---------------------------------------
+; Get Width and Height
+;---------------------------------------
+
+	activeMonitorInfo(ByRef Width,  ByRef  Height)
+	{ ; Retrieves the size of the monitor, the mouse is on
+		CoordMode, Mouse, Screen
+		MouseGetPos, mouseX , mouseY
+		SysGet, monCount, MonitorCount
+		Loop %monCount%
+   		{
+   			SysGet, curMon, Monitor, %a_index%
+       	 		if ( mouseX >= curMonLeft and mouseX <= curMonRight and mouseY >= curMonTop and mouseY <= curMonBottom ) {
+				Height := curMonBottom - curMonTop
+				Width  := curMonRight  - curMonLeft
+				return
+			}
+   		}
 	}
