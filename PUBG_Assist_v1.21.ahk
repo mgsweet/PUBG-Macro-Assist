@@ -14,7 +14,7 @@
 ;---------------------------------------
 	ADS := 0 ; Value for fast aiming.
 	V_AutoFire := 0 ; Value for Autofire being on and off.
-	useOldMode := 0 ; Value for change mode.
+	useOldMode := 1 ; Value for change mode.
 	wantsRbeforeL := 1 ; If wants to be aiming before autofire or compensation.
 
 	comp := 25 ; Value for auto fire compensation.
