@@ -1,13 +1,13 @@
-由于蓝洞开始封禁宏玩家，本库不再维护（我的号已被ban，2018/01/26）。
-
 # PUBG-Macro-Assist
 *Some macros coded by Autohotkey.祝大家吃鸡愉快*
 
 ## warning
-2018/01/26 mgsweet has been banned~
-感谢大家的支持，本库不再维护（虽然本日还上了个新版本，感觉是自己调试的时候准星一直匀速下移被实锤了），管它呢哈哈，反正我挺享受弄这个小辅助的过程的，好了，最后希望大家的号不要被封。
+2018/01/26 第一个号被BAN了
+2018/03/23 弄了个号调试了一波...
 
 ## Latest Edition:
+## V1.22 本版本删掉了大量过时功能，保留了一个精简版，此版本适合调了游戏右键长按开镜的玩家，具体见代码。
+
 ### V1.21
 1. 增加了自动适配显示器大小的功能，细节调整可自行修改225-226行
 2. 增加了需要按瞄准（按着鼠标右键）才有补偿的效果，默认开启，为了提供更好的仍手雷体验，若喜欢腰射压枪的朋友可以通过修改第十八行代码，或者使用ENTER键进行切换。
@@ -53,9 +53,6 @@
 	11. `NumpadSub`: sub 1 to  compensation value
 	12. `NumpadEnter`: change grenade mode setting
 	13. `NumPad0`: set compensation value to 0
-
-### Usage for  `superJump.ahk`
-1. Crouch Jumping: All of your `space` click will become super jump, just jump as usual.
 
 ## Development
 I will try to create some macros to help you fire better.

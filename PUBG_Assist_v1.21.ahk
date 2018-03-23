@@ -7,19 +7,20 @@
 	#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
 	#SingleInstance force ; Forces the script to only run one at a time.
 	;SetTitleMatchMode, 2 ; Sets mode for ifwinactive window.
+	;ifwinactive, 绝地求生
 	;'#IfWinActive, ahk_exe TslGame.exe; Ensures Autofire only works in PUBG.
 	
 ;---------------------------------------
 ; Variables
 ;---------------------------------------
-	ADS := 0 ; Value for fast aiming.
-	V_AutoFire := 0 ; Value for Autofire being on and off.
-	useOldMode := 0 ; Value for change mode.
+	; ADS := 0 ; Value for fast aiming.
+	;V_AutoFire := 0 ; Value for Autofire being on and off.
+	; comMode := 0 ; Value for change mode.
 	wantsRbeforeL := 1 ; If wants to be aiming before autofire or compensation.
 
 	comp := 25 ; Value for auto fire compensation.
-	strongComp := 25 ; Value for single shot compensation
-	weakComp := 8 ;
+	; strongComp := 25 ; Value for single shot compensation
+	; weakComp := 25 ;
 
 	TBS := 100 ;  value of Time between shot
 	SCAL_TBS := 96 ; Time between shot of SCAL
@@ -74,11 +75,11 @@
 ;---------------------------------------
 ; Autofire Setup
 ;---------------------------------------
-	~$*NumPad1::(ADS = 0 ? (ADS := 1,ToolTip("ADS ON")) : (ADS := 0,ToolTip("ADS OFF")))
+	; ~$*NumPad1::(ADS = 0 ? (ADS := 1,ToolTip("ADS ON")) : (ADS := 0,ToolTip("ADS OFF")))
 
-	~$*NumPad2::(V_AutoFire = 0 ? (V_AutoFire := 1, useOldMode := 1, strongComp := comp, comp := weakComp,ToolTip("Old Mode AUTOFIRE ON")) : (V_AutoFire := 0, useOldMode := 0,weakComp := comp,comp := strongComp,ToolTip("Old Mode AUTOFIRE OFF")))
+	; ~$*NumPad2::(V_AutoFire = 0 ? (V_AutoFire := 1, useOldMode := 1, strongComp := comp, comp := weakComp,ToolTip("Old Mode AUTOFIRE ON")) : (V_AutoFire := 0, useOldMode := 0,weakComp := comp,comp := strongComp,ToolTip("Old Mode AUTOFIRE OFF")))
 
-	~$*NumPad3::(useOldMode = 0 ? (useOldMode := 1,strongComp := comp, comp := weakComp,ToolTip(comp)) : (useOldMode := 0,weakComp := comp, comp := strongComp,ToolTip(comp)))
+	; ~$*NumPad3::(useOldMode = 0 ? (strongComp := comp, comp := weakComp,ToolTip(comp)) : (useOldMode := 0,weakComp := comp, comp := strongComp,ToolTip(comp)))
 
 	; SCAL_TBS := 96 ; Time between shot of SCAL
 	; AK_TBS := 100 ; Time between shot of AK
@@ -147,42 +148,19 @@
 ; Auto Firing
 ;---------------------------------------
 	~$*LButton::
-		if (GetKeyState("RButton") ||  wantsRbeforeL = 0) {	;  so while you throw grenades the com will not work;
-			if (V_AutoFire = 1)
+		if (GetKeyState("RButton")  ||  wantsRbeforeL = 0) {	;  so while you throw grenades the com will not work;
+            			Loop
 			{
-				Loop
-				{
-					GetKeyState, LButton, LButton, P
-					if LButton = U
-						Break
-					MouseClick, Left,,, 1
-					Gosub, RandomSleep
+				GetKeyState, LButton, LButton, P
+				if LButton = U 
+					Break
+				Random, random, TBS - 5, TBS + 5
+				Sleep %random%
 
-					Random, ramCom, -0.5, 0.0
-					;ToolTip(comp + ramCom)
-                				mouseXY(0, comp + ramCom) ;If active, call to Compensation.
-				}
-        			} else {
-            				if (useOldMode = 0) {
-            					ToolTip(1)
-            					Loop
-					{
-
-						GetKeyState, LButton, LButton, P
-						if LButton = U 
-							Break
-						Random, random, TBS - 1, TBS + 1
-						Sleep %random%
-
-						Random, ramCom, -0.5, 0.0
-						;ToolTip(comp + ramCom)
-                					mouseXY(0, comp + ramCom) ;If active, call to Compensation.
-                				}
-            				} else {
-            					Random, ramCom, -0.5, 0.0
-                				mouseXY(0, comp + ramCom) ;If active, call to Compensation.
-            				}
-        			}
+				Random, ramCom, -5.0, 0.0
+				;ToolTip(comp + ramCom)
+                			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
+                		}
 		}
 	Return
 
@@ -190,21 +168,21 @@
 ;---------------------------------------
 ; Fast Aiming
 ;---------------------------------------
-	$*RButton:: ;Fast Aiming [default: Right Button]
-		if ADS = 1
-		{
-		 	;If active, clicks once and clicks again when button is released.
-  			SendInput, {RButton}
-  			SendInput {RButton Down}
-  			KeyWait, RButton
-  			SendInput {RButton Up}
-		} else {
-			;If not, just keeps holding until button is released.
-  			SendInput {RButton Down}
-  			KeyWait, RButton
-  			SendInput {RButton Up}
-		}
-	Return
+	; $*RButton:: ;Fast Aiming [default: Right Button]
+	; 	if ADS = 1
+	; 	{
+	; 	 	;If active, clicks once and clicks again when button is released.
+ ;  			SendInput, {RButton}
+ ;  			SendInput {RButton Down}
+ ;  			KeyWait, RButton
+ ;  			SendInput {RButton Up}
+	; 	} else {
+	; 		;If not, just keeps holding until button is released.
+ ;  			SendInput {RButton Down}
+ ;  			KeyWait, RButton
+ ;  			SendInput {RButton Up}
+	; 	}
+	; Return
 
 
 ;---------------------------------------
@@ -224,7 +202,7 @@
 	{
 		; activeMonitorInfo(Width, Height) ;
 		; xPos := Width / 2 - 30
- 	; 	yPos := Height / 2 + (Height / 10)
+ 		; yPos := Height / 2 + (Height / 10)
 
   		ToolTip, %label%, 930, 650 ;Tooltips are shown under crosshair for FullHD monitors.
   		SetTimer, RemoveToolTip, 1300 ;Removes tooltip after 1.3 seconds.
