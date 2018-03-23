@@ -3,10 +3,11 @@
 
 ## warning
 2018/01/26 第一个号被BAN了
+
 2018/03/23 弄了个号调试了一波...
 
 ## Latest Edition:
-## V1.22 本版本删掉了大量过时功能，保留了一个精简版，此版本适合调了游戏右键长按开镜的玩家，具体见代码。
+### V1.212 本版本删掉了大量过时功能，保留了一个精简版，此版本适合调了游戏右键长按开镜的玩家，具体见代码。
 
 ### V1.21
 1. 增加了自动适配显示器大小的功能，细节调整可自行修改225-226行
@@ -31,28 +32,19 @@
 ## Usage
 1. Download **Autohotkey** from: [https://www.autohotkey.com/download/](https://www.autohotkey.com/download/)
 2. `git@github.com:mgsweet/PUBG-Macro-Assist.git` or download the `.zip`
-3. run the `superJump.ahk`(only super Jump macro) or `green_Assist.ahk`(more macro but  riskier).
+3. run the `PUBG_Assist_v1.21.ahk`.
 4. use Fullscreen (Windowed) to run your game.
 
-### Usage for  `PUBG_Assist(1080p)_adv.ahk` (new edition, find it in `/banned` or use the tool.exe)
-1. Crouch Jumping: All of your `space` click will become super jump, just jump as usual.
-2. Autofire: you can use single-fire mode of the gun to fire as the autofire mode, which will make you fire more stable. 
-3. Fast Aiming: aim faster in the game. A nice tool I suggest you to use. 
-4. Compensation: The most powerful tool I think. Which will help you fire stably. But you need to change the value of it to suit the gun you use. For example, M4A1 and M16's  compensation value is close to 8. Just try!
-5. Some hotkey you should know:
-	1. `NumPad1`: change ADS setting
-	2. `NumPad2`: change AutoFire setting
-	3. `NumPad3`: change comp between weak and strong
-	4. `NumPad4`: set interval to the time between shot of M4
-	5. `NumPad5`: set interval to the time between shot of UMP
-	6. `NumPad6`: set interval to the time between shot of SCAL
-	7. `NumPad7`: set interval to the time between shot of AK
-	8. `NumPad9`: set interval to the time between shot of GORZA
-	9. `NumPad8`: set compensation value to 8
-	10. `NumpadAdd`: add 1 to  compensation value
-	11. `NumpadSub`: sub 1 to  compensation value
-	12. `NumpadEnter`: change grenade mode setting
-	13. `NumPad0`: set compensation value to 0
+### Usage for  `PUBG_Assist_v1.21.ahk`
+1. 小键盘按键4：M4
+2. 小键盘按键5：UMP
+3. 小键盘按键6：SCAL
+4. 小键盘按键7：AK
+5. 小键盘按键9：GROZA_TBS
+6. 小键盘按键0：无补偿
+7. 小键盘+：补偿+1
+8. 小键盘-：补偿-1
+9. enter键：按着右键瞄准才压枪功能开关
 
 ## Development
 I will try to create some macros to help you fire better.
