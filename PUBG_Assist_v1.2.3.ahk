@@ -13,21 +13,26 @@
 ;---------------------------------------
 ; Variables
 ;---------------------------------------
-	; ADS := 0 ; Value for fast aiming.
-	;V_AutoFire := 0 ; Value for Autofire being on and off.
-	; comMode := 0 ; Value for change mode.
 	wantsRbeforeL := 1 ; If wants to be aiming before autofire or compensation.
 
-	comp := 25 ; Value for auto fire compensation.
-	; strongComp := 25 ; Value for single shot compensation
-	; weakComp := 25 ;
+	comp := 8 ; Value for auto fire compensation.
 
-	TBS := 100 ;  value of Time between shot
-	SCAL_TBS := 96 ; Time between shot of SCAL
-	AK_TBS := 100 ; Time between shot of AK
-	M4_TBS := 86 ; Time between shot of M4
-	GROZA_TBS := 80 ; Time between shot of GROZA
-	UMP_TBS := 92 ; Time between shot of UMP
+	tbs := 11 ;  value of Time between shot
+
+	SCAL_TBS := 12 ; Time between shot of SCAL
+	SCAL_COMP := 8 ; Compensation for SCAL
+
+	AK_TBS := 13 ; Time between shot of AK
+	AK_COMP := 8 ; Compensation for AK
+
+	M4_TBS := 11 ; Time between shot of M4
+	M4_COMP := 8 ; Compensation for M4
+
+	GROZA_TBS := 10 ; Time between shot of GROZA
+	GROZA_COMP := 5 ; Compensation for GROZA
+
+	UMP_TBS := 12 ; Time between shot of UMP
+	UMP_COMP := 7 ; Compensation for UMP
 ;---------------------------------------   
 ; Suspend if mouse is visible
 ;---------------------------------------   
@@ -87,34 +92,39 @@
 	; GROZA_TBS := 80 ; Time between shot of GROZA
 
 	~$*Numpad4::	
-		TBS := M4_TBS	; M4 
-		ToolTip("TBS: M4")
+		tbs := M4_TBS	; M4 
+		comp := M4_COMP
+		ToolTip("M4")
 	return
 
 	~$*Numpad5::	
-		TBS := UMP_TBS	; UMP 
-		ToolTip("TBS: UMP")
+		tbs := UMP_TBS	; UMP 
+		comp := UMP_COMP
+		ToolTip("UMP")
 	return
 
 	~$*Numpad6::	
-		TBS := SCAL_TBS	; SCAL
-		ToolTip("TBS: SCAL")
+		tbs := SCAL_TBS	; SCAL
+		comp := SCAL_COMP
+		ToolTip("SCAL")
 	return
 
 	~$*Numpad7::	
-		TBS := AK_TBS	; AK
-		ToolTip("TBS: AK")
+		tbs := AK_TBS	; AK
+		comp := AK_COMP
+		ToolTip("AK")
 	return
 
 	~$*Numpad9::	
-		TBS := GROZA_TBS	; AK
-		ToolTip("TBS: GROZA")
+		tbs := GROZA_TBS	; AK
+		comp := GROZA_COMP
+		ToolTip("GROZA")
 	return
 
 	; Resets compensation value to 0
 	~$*Numpad0::
 		comp := 0
-		ToolTip(comp)
+		ToolTip("no compensation")
 	Return	
 
 	; Resets compensation value to 8
@@ -154,10 +164,10 @@
 				GetKeyState, LButton, LButton, P
 				if LButton = U 
 					Break
-				Random, random, TBS - 5, TBS + 5
+				Random, random, tbs - 1, tbs + 1
 				Sleep %random%
 
-				Random, ramCom, -5.0, 0.0
+				Random, ramCom, - 2.0, 0.0
 				;ToolTip(comp + ramCom)
                 			mouseXY(0, comp + ramCom) ;If active, call to Compensation.
                 		}
