@@ -62,20 +62,6 @@
 		Sleep 1
 	}
 
-;---------------------------------------   
-; Crouch Jumping
-;---------------------------------------
-
- 	*$space::
-		Random,delay,450,525
-		SendInput, {Space Down}{c down}
-		Sleep, %delay%
-		SendInput, {c up}
-		SendInput, {Space}  ; To fix keep crouching.
-		SendInput, {Space down} ; To fix swim bug.
-		KeyWait, Space
-		SendInput, {Space up}
-	Return
    
 ;---------------------------------------
 ; Autofire Setup
